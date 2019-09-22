@@ -7,7 +7,7 @@ of REACH, they may also try to use this to ease their life.
 # Disclaimer
 ```
 Mr. Rogers has noted that it should not be against school rules so long as the
-student who is auto-marked in the location that they are actually occupying.
+student is auto-marked in the location that they are actually occupying.
 
 I hold no responsibility for the execution of this code or for the potential
 disciplinary responses the school may choose to carry out (although if you are
