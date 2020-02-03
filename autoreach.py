@@ -1,4 +1,4 @@
-import glob 
+import glob
 import json
 import time
 
@@ -12,7 +12,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class AutoReach():
     def __init__(self,
-                 executable_path="chromedriver_77",
+                 executable_path="chromedriver",
                  url="https://choate.reachboarding.com/",
                  cred_file="cred.json",
                  headless=False,
@@ -66,6 +66,14 @@ class AutoReach():
 
     def grab_location(self):
         try:
+            leave = self.driver.find_element_by_id('extSISO_OnLeave')
+            if "YOU ARE ON LEAVE" in leave.text:
+                return "LEAVE" 
+
+        except:
+            pass
+
+        try:
             current_selected = self.driver.find_elements_by_class_name(
                 'btn-success')
             for each_elm in current_selected:
@@ -97,11 +105,14 @@ class AutoReach():
 def run_automator(cred_file="cred.json"):
     automator = AutoReach(headless=True, cred_file=cred_file)
     old_location = automator.grab_location()
+
     if "Class Day" == old_location:
         automator.in_location()
         assert automator.grab_location() == "In House"  # sanity check
         automator.alert("Your location has been set from \"" + old_location +
                         "\" to \"" + automator.grab_location() + "\".")
+    elif "LEAVE" == old_location:
+        print("YOU ARE ON LEAVE")
     else:
         assert automator.grab_location() != "Class Day"  # sanity check
         automator.alert(
@@ -116,4 +127,5 @@ if __name__ == "__main__":
     cred_list = glob.glob("cred**.json")
     for each_cred in cred_list:
         if each_cred != "cred_template.json":
-            run_automator(cred_file="cred_max.json")
+            run_automator(cred_file=each_cred)
+
