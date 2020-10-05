@@ -1,3 +1,5 @@
+**Note: Since Choate now forces a COVID-19 symptoms survey to be a part of the check-in process, development of this tool has stopped out of respect for the disease control measures implemented this year. Pull requests will be welcome after the COVID-19 symptoms survey is no longer a part of the Choate check-in process.**
+
 # Autoreach
 Autoreach is designed to simplify student life at Choate by notifying and auto-marking
 students as "In House". This removes the mental burden of having to remember
